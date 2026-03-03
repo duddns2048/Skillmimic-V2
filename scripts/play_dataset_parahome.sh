@@ -1,0 +1,13 @@
+python skillmimic/run.py \
+--play_dataset \
+--task SkillMimicParahome \
+--test \
+--num_envs 1 \
+--episode_length 5000 \
+--state_init 2 \
+--cfg_env skillmimic/data/cfg/parahome_sm/parahome.yaml \
+--cfg_train skillmimic/data/cfg/train/rlg/parahome.yaml \
+--motion_file skillmimic/data/motions/ParaHome/wristmimic/s110_move_kettle \
+--asset_file_name mjcf/parahome/s79.xml \
+--in_scene_obj_static desk,diningtable \
+--in_scene_obj_dynamic kettle

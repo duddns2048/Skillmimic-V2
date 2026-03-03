@@ -1,0 +1,575 @@
+<!-- change the damping from 50 to 500 -->
+<mujoco model="humanoid">
+  <compiler coordinate="local"/>
+  <statistic extent="2" center="0 0 1"/>
+  <option timestep="0.00555"/>
+  <default>
+    <motor ctrlrange="-1 1" ctrllimited="true"/>
+    <geom type="capsule" condim="1" friction="1.0 0.05 0.05" solimp=".9 .99 .003" solref=".015 1"/>
+    <joint type="hinge" damping="0.1" stiffness="5" armature=".007" limited="true" solimplimit="0 .99 .01"/>
+    <site size=".04" group="3"/>
+    <default class="force-torque">
+      <site type="box" size=".01 .01 .02" rgba="1 0 0 1"/>
+    </default>
+    <default class="touch">
+      <site type="capsule" rgba="0 0 1 .3"/>
+    </default>
+  </default>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1=".4 .5 .6" rgb2="0 0 0" width="100" height="100"/>
+    <texture builtin="flat" height="1278" mark="cross" markrgb="1 1 1" name="texgeom" random="0.01" rgb1="0.8 0.6 0.4" rgb2="0.8 0.6 0.4" type="cube" width="127"/>
+    <texture builtin="checker" height="100" name="texplane" rgb1="0 0 0" rgb2="0.8 0.8 0.8" type="2d" width="100"/>
+    <material name="MatPlane" reflectance="0.5" shininess="1" specular="1" texrepeat="60 60" texture="texplane"/>
+    <material name="geom" texture="texgeom" texuniform="true"/>
+  </asset>
+  <worldbody>
+    <light cutoff="100" diffuse="1 1 1" dir="-0 0 -1.3" directional="true" exponent="1" pos="0 0 1.3" specular=".1 .1 .1"/>
+    <geom conaffinity="1" condim="3" name="floor" pos="0 0 0" rgba="0.8 0.9 0.8 1" size="100 100 .2" type="plane" material="MatPlane"/>
+    <body name="pHipOrigin" pos="0 0 0">
+      <freejoint name="pHipOrigin"/>
+      <geom type="sphere" contype="1" conaffinity="1" density="4629.6296296296305" size="0.07011" pos="0.0000 0.0000 -0.0000"/>
+      <body name="jL5S1" pos="-0.007180346382188555 0.0 0.06462293523202631">
+        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0.02 0.0 0.0 0.06891632825136185" size="0.03"/>
+        <joint name="jL5S1_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+        <joint name="jL5S1_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+        <joint name="jL5S1_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+        <body name="jL4L3" pos="0.0 0.0 0.06891632825136185">
+          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 -0.0005982957480561813 0.0 0.07754973557177482" size="0.03"/>
+          <joint name="jL4L3_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+          <joint name="jL4L3_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+          <joint name="jL4L3_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+          <body name="jL1T12" pos="-0.0005982957480561813 0.0 0.07754973557177482">
+            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 -0.0006235483508225763 0.0 0.08066581381203114" size="0.03"/>
+            <joint name="jL1T12_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            <joint name="jL1T12_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            <joint name="jL1T12_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            <body name="jT9T8" pos="-0.0006235483508225763 0.0 0.08066581381203114">
+              <geom type="sphere" contype="1" conaffinity="1" density="1000" size="0.05011" pos="0.0000 0.0000 0.050000"/>
+              <joint name="jT9T8_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+              <joint name="jT9T8_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+              <joint name="jT9T8_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+              <body name="jT1C7" pos="0.0 0.0 0.11084800958633423">
+                <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0.03 0.0009172181466941922 0.0 0.07774603617223645" size="0.02"/>
+                <joint name="jT1C7_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                <joint name="jT1C7_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                <joint name="jT1C7_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                <body name="jC1Head" pos="0.0009172181466941922 0.0 0.07774603617223645">
+                  <geom type="cylinder" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0 0 0.15" size="0.05"/>
+                  <joint name="jC1Head_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                  <joint name="jC1Head_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                  <joint name="jC1Head_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                </body>
+              </body>
+              <body name="jRightT4Shoulder" pos="0.0 -0.025392003848493914 0.0619112784771549">
+                <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 -0.05 0 0.0 -0.12868478894233704 0.0" size="0.04"/>
+                <joint name="jRightT4Shoulder_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                <joint name="jRightT4Shoulder_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                <joint name="jRightT4Shoulder_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                <body name="jRightShoulder" pos="0.0 -0.12868478894233704 0.0">
+                  <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 -0.05 0 0.0 -0.2721332907676697 0.0" size="0.036"/>
+                  <joint name="jRightShoulder_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                  <joint name="jRightShoulder_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                  <joint name="jRightShoulder_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                  <body name="jRightElbow" pos="0.0 -0.2721332907676697 0.0">
+                    <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 -0.05 0 9.097585321878134e-05 -0.16003785279386482 0.0" size="0.034"/>
+                    <joint name="jRightElbow_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                    <joint name="jRightElbow_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                    <joint name="jRightElbow_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                    <body name="jRightWrist" pos="9.097585321878134e-05 -0.22603785279386482 0.0">
+                      <geom density="1000" type="box" pos="0 0 0" size="0.035 0.03 0.01" quat="1.0 0 0 0"/>
+                      <joint name="jRightWrist_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                      <joint name="jRightWrist_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                      <joint name="jRightWrist_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                      <body name="jRightFirstCMC" pos="0.026230283 -0.025143197 -0.0011878677">
+                        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.00136227672919631 -0.038442548364400864 0.0008122885483317077" size="0.005"/>
+                        <joint name="jRightFirstCMC_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jRightFirstCMC_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jRightFirstCMC_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <body name="jRightFirstMCP" pos="0.0013622767 -0.03844255 0.00081228855">
+                          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.02956804819405079 0.0" size="0.005"/>
+                          <joint name="jRightFirstMCP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jRightFirstMCP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jRightFirstMCP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <body name="jRightIP" pos="0.0 -0.029568048 0.0">
+                            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.029483415186405182 0.0" size="0.005"/>
+                            <joint name="jRightIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jRightIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jRightIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          </body>
+                        </body>
+                      </body>
+                      <body name="jRightSecondCMC" pos="0.011155235 -0.032592066 -0.0005684847">
+                        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 -0.00032714949338696897 -0.05217788740992546 -0.0005412576720118523" size="0.005"/>
+                        <joint name="jRightSecondCMC_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jRightSecondCMC_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jRightSecondCMC_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <body name="jRightSecondMCP" pos="-0.0003271495 -0.052177887 -0.0005412577">
+                          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.03924357891082764 0.0" size="0.005"/>
+                          <joint name="jRightSecondMCP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jRightSecondMCP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jRightSecondMCP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <body name="jRightSecondPIP" pos="0.0 -0.03924358 0.0">
+                            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.02142910845577717 0.0" size="0.005"/>
+                            <joint name="jRightSecondPIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jRightSecondPIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jRightSecondPIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <body name="jRightSecondDIP" pos="0.0 -0.021429108 0.0">
+                              <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.019212350249290466 0.0" size="0.005"/>
+                              <joint name="jRightSecondDIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jRightSecondDIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jRightSecondDIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                      <body name="jRightThirdCMC" pos="-0.00063335785 -0.03425053 0.0014399445">
+                        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 -0.0006345764850266278 -0.0525747574865818 0.0014303569914773107" size="0.005"/>
+                        <joint name="jRightThirdCMC_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jRightThirdCMC_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jRightThirdCMC_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <body name="jRightThirdMCP" pos="-0.0006345765 -0.052574757 0.001430357">
+                          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.041011691093444824 0.0" size="0.005"/>
+                          <joint name="jRightThirdMCP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jRightThirdMCP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jRightThirdMCP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <body name="jRightThirdPIP" pos="0.0 -0.04101169 0.0">
+                            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.022741451859474182 0.0" size="0.005"/>
+                            <joint name="jRightThirdPIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jRightThirdPIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jRightThirdPIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <body name="jRightThirdDIP" pos="0.0 -0.022741452 0.0">
+                              <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.01808418333530426 0.0" size="0.005"/>
+                              <joint name="jRightThirdDIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jRightThirdDIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jRightThirdDIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                      <body name="jRightFourthCMC" pos="-0.0116171455 -0.03235567 0.00076160184">
+                        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 -0.00034027619403786957 -0.04663816839456558 0.0007327226339839399" size="0.005"/>
+                        <joint name="jRightFourthCMC_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jRightFourthCMC_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jRightFourthCMC_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <body name="jRightFourthMCP" pos="-0.0003402762 -0.04663817 0.00073272263">
+                          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.036567993462085724 0.0" size="0.005"/>
+                          <joint name="jRightFourthMCP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jRightFourthMCP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jRightFourthMCP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <body name="jRightFourthPIP" pos="0.0 -0.036567993 0.0">
+                            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.02168475091457367 0.0" size="0.005"/>
+                            <joint name="jRightFourthPIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jRightFourthPIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jRightFourthPIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <body name="jRightFourthDIP" pos="0.0 -0.02168475 0.0">
+                              <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.01827874779701233 0.0" size="0.005"/>
+                              <joint name="jRightFourthDIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jRightFourthDIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jRightFourthDIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                      <body name="jRightFifthCMC" pos="-0.02037089 -0.02838451 0.0005599352">
+                        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 -6.454563390434487e-06 -0.0436994768679142 0.0006013591773808002" size="0.005"/>
+                        <joint name="jRightFifthCMC_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jRightFifthCMC_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jRightFifthCMC_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <body name="jRightFifthMCP" pos="-6.4545634e-06 -0.043699477 0.0006013592">
+                          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.032733701169490814 0.0" size="0.005"/>
+                          <joint name="jRightFifthMCP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jRightFifthMCP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jRightFifthMCP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <body name="jRightFifthPIP" pos="0.0 -0.0327337 0.0">
+                            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.01849217712879181 0.0" size="0.005"/>
+                            <joint name="jRightFifthPIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jRightFifthPIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jRightFifthPIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <body name="jRightFifthDIP" pos="0.0 -0.018492177 0.0">
+                              <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 -0.01961217075586319 0.0" size="0.005"/>
+                              <joint name="jRightFifthDIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jRightFifthDIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jRightFifthDIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+              <body name="jLeftT4Shoulder" pos="0.0 0.02546286294844947 0.06208404851516233">
+                <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0.05 0 0.0 0.1279546022415161 0.0" size="0.04"/>
+                <joint name="jLeftT4Shoulder_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                <joint name="jLeftT4Shoulder_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                <joint name="jLeftT4Shoulder_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                <body name="jLeftShoulder" pos="0.0 0.1279546022415161 0.0">
+                  <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0.05 0 0.0 0.27217936515808105 0.0" size="0.036"/>
+                  <joint name="jLeftShoulder_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                  <joint name="jLeftShoulder_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                  <joint name="jLeftShoulder_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                  <body name="jLeftElbow" pos="0.0 0.27217936515808105 0.0">
+                    <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0.05 0 9.0581078525661e-05 0.15905699885501043 0.0" size="0.034"/>
+                    <joint name="jLeftElbow_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                    <joint name="jLeftElbow_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                    <joint name="jLeftElbow_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                    <body name="jLeftWrist" pos="9.0581078525661e-05 0.22505699885501043 0.0">
+                      <geom density="1000" type="box" pos="0 0 0" size="0.035 0.03 0.01" quat="1.0 0 0 0"/>
+                      <joint name="jLeftWrist_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                      <joint name="jLeftWrist_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                      <joint name="jLeftWrist_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                      <body name="jLeftFirstCMC" pos="0.025673268 0.0257339 -0.0011490509">
+                        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0013491541612893343 0.03844168409705162 0.000791606493294239" size="0.005"/>
+                        <joint name="jLeftFirstCMC_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jLeftFirstCMC_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jLeftFirstCMC_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <body name="jLeftFirstMCP" pos="0.0013491542 0.038441684 0.0007916065">
+                          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.02956804819405079 0.0" size="0.005"/>
+                          <joint name="jLeftFirstMCP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jLeftFirstMCP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jLeftFirstMCP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <body name="jLeftIP" pos="0.0 0.029568048 0.0">
+                            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.029483415186405182 0.0" size="0.005"/>
+                            <joint name="jLeftIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jLeftIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jLeftIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          </body>
+                        </body>
+                      </body>
+                      <body name="jLeftSecondCMC" pos="0.011283724 0.032532096 -0.0005731792">
+                        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 -0.00028525269590318203 0.05217896029353142 -0.0005479440442286432" size="0.005"/>
+                        <joint name="jLeftSecondCMC_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jLeftSecondCMC_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jLeftSecondCMC_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <body name="jLeftSecondMCP" pos="-0.0002852527 0.05217896 -0.00054794404">
+                          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.03924357891082764 0.0" size="0.005"/>
+                          <joint name="jLeftSecondMCP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jLeftSecondMCP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jLeftSecondMCP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <body name="jLeftSecondPIP" pos="0.0 0.03924358 0.0">
+                            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.02142910845577717 0.0" size="0.005"/>
+                            <joint name="jLeftSecondPIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jLeftSecondPIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jLeftSecondPIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <body name="jLeftSecondDIP" pos="0.0 0.021429108 0.0">
+                              <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.019212350249290466 0.0" size="0.005"/>
+                              <joint name="jLeftSecondDIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jLeftSecondDIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jLeftSecondDIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                      <body name="jLeftThirdCMC" pos="-0.0006370762 0.03425361 0.0013919458">
+                        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 -0.0006396984681487083 0.05257577821612358 0.0014016014756634831" size="0.005"/>
+                        <joint name="jLeftThirdCMC_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jLeftThirdCMC_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jLeftThirdCMC_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <body name="jLeftThirdMCP" pos="-0.00063969847 0.05257578 0.0014016015">
+                          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.041011691093444824 0.0" size="0.005"/>
+                          <joint name="jLeftThirdMCP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jLeftThirdMCP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jLeftThirdMCP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <body name="jLeftThirdPIP" pos="0.0 0.04101169 0.0">
+                            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.022741451859474182 0.0" size="0.005"/>
+                            <joint name="jLeftThirdPIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jLeftThirdPIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jLeftThirdPIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <body name="jLeftThirdDIP" pos="0.0 0.022741452 0.0">
+                              <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.01808418333530426 0.0" size="0.005"/>
+                              <joint name="jLeftThirdDIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jLeftThirdDIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jLeftThirdDIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                      <body name="jLeftFourthCMC" pos="-0.012043418 0.03219017 0.0008130027">
+                        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 -0.0003659355570562184 0.046635501086711884 0.000774938496761024" size="0.005"/>
+                        <joint name="jLeftFourthCMC_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jLeftFourthCMC_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jLeftFourthCMC_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <body name="jLeftFourthMCP" pos="-0.00036593556 0.0466355 0.0007749385">
+                          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.036567993462085724 0.0" size="0.005"/>
+                          <joint name="jLeftFourthMCP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jLeftFourthMCP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jLeftFourthMCP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <body name="jLeftFourthPIP" pos="0.0 0.036567993 0.0">
+                            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.02168475091457367 0.0" size="0.005"/>
+                            <joint name="jLeftFourthPIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jLeftFourthPIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jLeftFourthPIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <body name="jLeftFourthDIP" pos="0.0 0.02168475 0.0">
+                              <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.01827874779701233 0.0" size="0.005"/>
+                              <joint name="jLeftFourthDIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jLeftFourthDIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jLeftFourthDIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                      <body name="jLeftFifthCMC" pos="-0.020988 0.027935775 0.00056893524">
+                        <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 -1.2393018550937995e-05 0.04369828477501869 0.0006287908181548119" size="0.005"/>
+                        <joint name="jLeftFifthCMC_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jLeftFifthCMC_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <joint name="jLeftFifthCMC_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                        <body name="jLeftFifthMCP" pos="-1.2393019e-05 0.043698285 0.0006287908">
+                          <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.032733701169490814 0.0" size="0.005"/>
+                          <joint name="jLeftFifthMCP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jLeftFifthMCP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <joint name="jLeftFifthMCP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                          <body name="jLeftFifthPIP" pos="0.0 0.0327337 0.0">
+                            <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.01849217712879181 0.0" size="0.005"/>
+                            <joint name="jLeftFifthPIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jLeftFifthPIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <joint name="jLeftFifthPIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            <body name="jLeftFifthDIP" pos="0.0 0.018492177 0.0">
+                              <geom type="capsule" contype="1" conaffinity="1" density="1000" fromto="0 0 0 0.0 0.01961217075586319 0.0" size="0.005"/>
+                              <joint name="jLeftFifthDIP_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jLeftFifthDIP_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                              <joint name="jLeftFifthDIP_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="jRightHip" pos="-0.00015798732029199646 -0.09375737330478731 0.0014222710540885408">
+        <geom type="capsule" contype="1" conaffinity="1" density="2040.816327" fromto="0 0 -0.08 5.644563537568377e-05 0.0 -0.4734109600123032" size="0.0605"/>
+        <joint name="jRightHip_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+        <joint name="jRightHip_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+        <joint name="jRightHip_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+        <body name="jRightKnee" pos="5.644563537568377e-05 0.0 -0.4734109600123032">
+          <geom type="capsule" contype="1" conaffinity="1" density="1234.567901" fromto="0 0 -0.1 0.0004203012552253568 0.0 -0.3082297451101154" size="0.0533"/>
+          <joint name="jRightKnee_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+          <joint name="jRightKnee_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+          <joint name="jRightKnee_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+          <body name="jRightAnkle" pos="0.0004203012552253568 0.0 -0.3722297451101154">
+            <geom density="1000" type="box" pos="0.04 0 -0.03" size="0.1 0.05 0.03" quat="1.0 0 0 0"/>
+            <joint name="jRightAnkle_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            <joint name="jRightAnkle_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            <joint name="jRightAnkle_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            <body name="jRightBallFoot" pos="0.13857605159777447 0.0 -0.06357329383353258">
+              <geom density="1000" type="box" pos="0 0 0.02" size="0.01 0.05 0.01" quat="1.0 0 0 0"/>
+              <joint name="jRightBallFoot_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+              <joint name="jRightBallFoot_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+              <joint name="jRightBallFoot_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="jLeftHip" pos="-0.00015550421604634503 0.09348872138654377 0.001399437908950797">
+        <geom type="capsule" contype="1" conaffinity="1" density="2040.816327" fromto="0 0 -0.08 5.64775660857864e-05 0.0 -0.47367876367901635" size="0.0605"/>
+        <joint name="jLeftHip_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+        <joint name="jLeftHip_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+        <joint name="jLeftHip_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+        <body name="jLeftKnee" pos="5.64775660857864e-05 0.0 -0.47367876367901635">
+          <geom type="capsule" contype="1" conaffinity="1" density="1234.567901" fromto="0 0 -0.1 0.0004203012552253568 0.0 -0.3082297451101154" size="0.0533"/>
+          <joint name="jLeftKnee_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+          <joint name="jLeftKnee_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+          <joint name="jLeftKnee_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+          <body name="jLeftAnkle" pos="0.0004203012552253568 0.0 -0.3722297451101154">
+            <geom density="1000" type="box" pos="0.04 0 -0.03" size="0.1 0.05 0.03" quat="1.0 0 0 0"/>
+            <joint name="jLeftAnkle_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            <joint name="jLeftAnkle_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            <joint name="jLeftAnkle_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            <body name="jLeftBallFoot" pos="0.13857605159777447 0.0 -0.06357329383353258">
+              <geom density="1000" type="box" pos="0 0 0.02" size="0.01 0.05 0.01" quat="1.0 0 0 0"/>
+              <joint name="jLeftBallFoot_x" type="hinge" pos="0 0 0" axis="1 0 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+              <joint name="jLeftBallFoot_y" type="hinge" pos="0 0 0" axis="0 1 0" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+              <joint name="jLeftBallFoot_z" type="hinge" pos="0 0 0" axis="0 0 1" stiffness="500" damping="500" armature="0.02" range="-180.0000 180.0000"/>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="jL5S1_x" joint="jL5S1_x" gear="500"/>
+    <motor name="jL5S1_y" joint="jL5S1_y" gear="500"/>
+    <motor name="jL5S1_z" joint="jL5S1_z" gear="500"/>
+    <motor name="jRightHip_x" joint="jRightHip_x" gear="500"/>
+    <motor name="jRightHip_y" joint="jRightHip_y" gear="500"/>
+    <motor name="jRightHip_z" joint="jRightHip_z" gear="500"/>
+    <motor name="jLeftHip_x" joint="jLeftHip_x" gear="500"/>
+    <motor name="jLeftHip_y" joint="jLeftHip_y" gear="500"/>
+    <motor name="jLeftHip_z" joint="jLeftHip_z" gear="500"/>
+    <motor name="jL4L3_x" joint="jL4L3_x" gear="500"/>
+    <motor name="jL4L3_y" joint="jL4L3_y" gear="500"/>
+    <motor name="jL4L3_z" joint="jL4L3_z" gear="500"/>
+    <motor name="jL1T12_x" joint="jL1T12_x" gear="500"/>
+    <motor name="jL1T12_y" joint="jL1T12_y" gear="500"/>
+    <motor name="jL1T12_z" joint="jL1T12_z" gear="500"/>
+    <motor name="jT9T8_x" joint="jT9T8_x" gear="500"/>
+    <motor name="jT9T8_y" joint="jT9T8_y" gear="500"/>
+    <motor name="jT9T8_z" joint="jT9T8_z" gear="500"/>
+    <motor name="jT1C7_x" joint="jT1C7_x" gear="500"/>
+    <motor name="jT1C7_y" joint="jT1C7_y" gear="500"/>
+    <motor name="jT1C7_z" joint="jT1C7_z" gear="500"/>
+    <motor name="jRightT4Shoulder_x" joint="jRightT4Shoulder_x" gear="500"/>
+    <motor name="jRightT4Shoulder_y" joint="jRightT4Shoulder_y" gear="500"/>
+    <motor name="jRightT4Shoulder_z" joint="jRightT4Shoulder_z" gear="500"/>
+    <motor name="jLeftT4Shoulder_x" joint="jLeftT4Shoulder_x" gear="500"/>
+    <motor name="jLeftT4Shoulder_y" joint="jLeftT4Shoulder_y" gear="500"/>
+    <motor name="jLeftT4Shoulder_z" joint="jLeftT4Shoulder_z" gear="500"/>
+    <motor name="jC1Head_x" joint="jC1Head_x" gear="500"/>
+    <motor name="jC1Head_y" joint="jC1Head_y" gear="500"/>
+    <motor name="jC1Head_z" joint="jC1Head_z" gear="500"/>
+    <motor name="jRightShoulder_x" joint="jRightShoulder_x" gear="500"/>
+    <motor name="jRightShoulder_y" joint="jRightShoulder_y" gear="500"/>
+    <motor name="jRightShoulder_z" joint="jRightShoulder_z" gear="500"/>
+    <motor name="jRightElbow_x" joint="jRightElbow_x" gear="500"/>
+    <motor name="jRightElbow_y" joint="jRightElbow_y" gear="500"/>
+    <motor name="jRightElbow_z" joint="jRightElbow_z" gear="500"/>
+    <motor name="jRightWrist_x" joint="jRightWrist_x" gear="500"/>
+    <motor name="jRightWrist_y" joint="jRightWrist_y" gear="500"/>
+    <motor name="jRightWrist_z" joint="jRightWrist_z" gear="500"/>
+    <motor name="jLeftShoulder_x" joint="jLeftShoulder_x" gear="500"/>
+    <motor name="jLeftShoulder_y" joint="jLeftShoulder_y" gear="500"/>
+    <motor name="jLeftShoulder_z" joint="jLeftShoulder_z" gear="500"/>
+    <motor name="jLeftElbow_x" joint="jLeftElbow_x" gear="500"/>
+    <motor name="jLeftElbow_y" joint="jLeftElbow_y" gear="500"/>
+    <motor name="jLeftElbow_z" joint="jLeftElbow_z" gear="500"/>
+    <motor name="jLeftWrist_x" joint="jLeftWrist_x" gear="500"/>
+    <motor name="jLeftWrist_y" joint="jLeftWrist_y" gear="500"/>
+    <motor name="jLeftWrist_z" joint="jLeftWrist_z" gear="500"/>
+    <motor name="jRightKnee_x" joint="jRightKnee_x" gear="500"/>
+    <motor name="jRightKnee_y" joint="jRightKnee_y" gear="500"/>
+    <motor name="jRightKnee_z" joint="jRightKnee_z" gear="500"/>
+    <motor name="jRightAnkle_x" joint="jRightAnkle_x" gear="500"/>
+    <motor name="jRightAnkle_y" joint="jRightAnkle_y" gear="500"/>
+    <motor name="jRightAnkle_z" joint="jRightAnkle_z" gear="500"/>
+    <motor name="jRightBallFoot_x" joint="jRightBallFoot_x" gear="500"/>
+    <motor name="jRightBallFoot_y" joint="jRightBallFoot_y" gear="500"/>
+    <motor name="jRightBallFoot_z" joint="jRightBallFoot_z" gear="500"/>
+    <motor name="jLeftKnee_x" joint="jLeftKnee_x" gear="500"/>
+    <motor name="jLeftKnee_y" joint="jLeftKnee_y" gear="500"/>
+    <motor name="jLeftKnee_z" joint="jLeftKnee_z" gear="500"/>
+    <motor name="jLeftAnkle_x" joint="jLeftAnkle_x" gear="500"/>
+    <motor name="jLeftAnkle_y" joint="jLeftAnkle_y" gear="500"/>
+    <motor name="jLeftAnkle_z" joint="jLeftAnkle_z" gear="500"/>
+    <motor name="jLeftBallFoot_x" joint="jLeftBallFoot_x" gear="500"/>
+    <motor name="jLeftBallFoot_y" joint="jLeftBallFoot_y" gear="500"/>
+    <motor name="jLeftBallFoot_z" joint="jLeftBallFoot_z" gear="500"/>
+    <motor name="jLeftFirstCMC_x" joint="jLeftFirstCMC_x" gear="500"/>
+    <motor name="jLeftFirstCMC_y" joint="jLeftFirstCMC_y" gear="500"/>
+    <motor name="jLeftFirstCMC_z" joint="jLeftFirstCMC_z" gear="500"/>
+    <motor name="jLeftSecondCMC_x" joint="jLeftSecondCMC_x" gear="500"/>
+    <motor name="jLeftSecondCMC_y" joint="jLeftSecondCMC_y" gear="500"/>
+    <motor name="jLeftSecondCMC_z" joint="jLeftSecondCMC_z" gear="500"/>
+    <motor name="jLeftThirdCMC_x" joint="jLeftThirdCMC_x" gear="500"/>
+    <motor name="jLeftThirdCMC_y" joint="jLeftThirdCMC_y" gear="500"/>
+    <motor name="jLeftThirdCMC_z" joint="jLeftThirdCMC_z" gear="500"/>
+    <motor name="jLeftFourthCMC_x" joint="jLeftFourthCMC_x" gear="500"/>
+    <motor name="jLeftFourthCMC_y" joint="jLeftFourthCMC_y" gear="500"/>
+    <motor name="jLeftFourthCMC_z" joint="jLeftFourthCMC_z" gear="500"/>
+    <motor name="jLeftFifthCMC_x" joint="jLeftFifthCMC_x" gear="500"/>
+    <motor name="jLeftFifthCMC_y" joint="jLeftFifthCMC_y" gear="500"/>
+    <motor name="jLeftFifthCMC_z" joint="jLeftFifthCMC_z" gear="500"/>
+    <motor name="jLeftFifthMCP_x" joint="jLeftFifthMCP_x" gear="500"/>
+    <motor name="jLeftFifthMCP_y" joint="jLeftFifthMCP_y" gear="500"/>
+    <motor name="jLeftFifthMCP_z" joint="jLeftFifthMCP_z" gear="500"/>
+    <motor name="jLeftFifthPIP_x" joint="jLeftFifthPIP_x" gear="500"/>
+    <motor name="jLeftFifthPIP_y" joint="jLeftFifthPIP_y" gear="500"/>
+    <motor name="jLeftFifthPIP_z" joint="jLeftFifthPIP_z" gear="500"/>
+    <motor name="jLeftFifthDIP_x" joint="jLeftFifthDIP_x" gear="500"/>
+    <motor name="jLeftFifthDIP_y" joint="jLeftFifthDIP_y" gear="500"/>
+    <motor name="jLeftFifthDIP_z" joint="jLeftFifthDIP_z" gear="500"/>
+    <motor name="jLeftFourthMCP_x" joint="jLeftFourthMCP_x" gear="500"/>
+    <motor name="jLeftFourthMCP_y" joint="jLeftFourthMCP_y" gear="500"/>
+    <motor name="jLeftFourthMCP_z" joint="jLeftFourthMCP_z" gear="500"/>
+    <motor name="jLeftFourthPIP_x" joint="jLeftFourthPIP_x" gear="500"/>
+    <motor name="jLeftFourthPIP_y" joint="jLeftFourthPIP_y" gear="500"/>
+    <motor name="jLeftFourthPIP_z" joint="jLeftFourthPIP_z" gear="500"/>
+    <motor name="jLeftFourthDIP_x" joint="jLeftFourthDIP_x" gear="500"/>
+    <motor name="jLeftFourthDIP_y" joint="jLeftFourthDIP_y" gear="500"/>
+    <motor name="jLeftFourthDIP_z" joint="jLeftFourthDIP_z" gear="500"/>
+    <motor name="jLeftThirdMCP_x" joint="jLeftThirdMCP_x" gear="500"/>
+    <motor name="jLeftThirdMCP_y" joint="jLeftThirdMCP_y" gear="500"/>
+    <motor name="jLeftThirdMCP_z" joint="jLeftThirdMCP_z" gear="500"/>
+    <motor name="jLeftThirdPIP_x" joint="jLeftThirdPIP_x" gear="500"/>
+    <motor name="jLeftThirdPIP_y" joint="jLeftThirdPIP_y" gear="500"/>
+    <motor name="jLeftThirdPIP_z" joint="jLeftThirdPIP_z" gear="500"/>
+    <motor name="jLeftThirdDIP_x" joint="jLeftThirdDIP_x" gear="500"/>
+    <motor name="jLeftThirdDIP_y" joint="jLeftThirdDIP_y" gear="500"/>
+    <motor name="jLeftThirdDIP_z" joint="jLeftThirdDIP_z" gear="500"/>
+    <motor name="jLeftSecondMCP_x" joint="jLeftSecondMCP_x" gear="500"/>
+    <motor name="jLeftSecondMCP_y" joint="jLeftSecondMCP_y" gear="500"/>
+    <motor name="jLeftSecondMCP_z" joint="jLeftSecondMCP_z" gear="500"/>
+    <motor name="jLeftSecondPIP_x" joint="jLeftSecondPIP_x" gear="500"/>
+    <motor name="jLeftSecondPIP_y" joint="jLeftSecondPIP_y" gear="500"/>
+    <motor name="jLeftSecondPIP_z" joint="jLeftSecondPIP_z" gear="500"/>
+    <motor name="jLeftSecondDIP_x" joint="jLeftSecondDIP_x" gear="500"/>
+    <motor name="jLeftSecondDIP_y" joint="jLeftSecondDIP_y" gear="500"/>
+    <motor name="jLeftSecondDIP_z" joint="jLeftSecondDIP_z" gear="500"/>
+    <motor name="jLeftFirstMCP_x" joint="jLeftFirstMCP_x" gear="500"/>
+    <motor name="jLeftFirstMCP_y" joint="jLeftFirstMCP_y" gear="500"/>
+    <motor name="jLeftFirstMCP_z" joint="jLeftFirstMCP_z" gear="500"/>
+    <motor name="jLeftIP_x" joint="jLeftIP_x" gear="500"/>
+    <motor name="jLeftIP_y" joint="jLeftIP_y" gear="500"/>
+    <motor name="jLeftIP_z" joint="jLeftIP_z" gear="500"/>
+    <motor name="jRightFirstCMC_x" joint="jRightFirstCMC_x" gear="500"/>
+    <motor name="jRightFirstCMC_y" joint="jRightFirstCMC_y" gear="500"/>
+    <motor name="jRightFirstCMC_z" joint="jRightFirstCMC_z" gear="500"/>
+    <motor name="jRightSecondCMC_x" joint="jRightSecondCMC_x" gear="500"/>
+    <motor name="jRightSecondCMC_y" joint="jRightSecondCMC_y" gear="500"/>
+    <motor name="jRightSecondCMC_z" joint="jRightSecondCMC_z" gear="500"/>
+    <motor name="jRightThirdCMC_x" joint="jRightThirdCMC_x" gear="500"/>
+    <motor name="jRightThirdCMC_y" joint="jRightThirdCMC_y" gear="500"/>
+    <motor name="jRightThirdCMC_z" joint="jRightThirdCMC_z" gear="500"/>
+    <motor name="jRightFourthCMC_x" joint="jRightFourthCMC_x" gear="500"/>
+    <motor name="jRightFourthCMC_y" joint="jRightFourthCMC_y" gear="500"/>
+    <motor name="jRightFourthCMC_z" joint="jRightFourthCMC_z" gear="500"/>
+    <motor name="jRightFifthCMC_x" joint="jRightFifthCMC_x" gear="500"/>
+    <motor name="jRightFifthCMC_y" joint="jRightFifthCMC_y" gear="500"/>
+    <motor name="jRightFifthCMC_z" joint="jRightFifthCMC_z" gear="500"/>
+    <motor name="jRightFifthMCP_x" joint="jRightFifthMCP_x" gear="500"/>
+    <motor name="jRightFifthMCP_y" joint="jRightFifthMCP_y" gear="500"/>
+    <motor name="jRightFifthMCP_z" joint="jRightFifthMCP_z" gear="500"/>
+    <motor name="jRightFifthPIP_x" joint="jRightFifthPIP_x" gear="500"/>
+    <motor name="jRightFifthPIP_y" joint="jRightFifthPIP_y" gear="500"/>
+    <motor name="jRightFifthPIP_z" joint="jRightFifthPIP_z" gear="500"/>
+    <motor name="jRightFifthDIP_x" joint="jRightFifthDIP_x" gear="500"/>
+    <motor name="jRightFifthDIP_y" joint="jRightFifthDIP_y" gear="500"/>
+    <motor name="jRightFifthDIP_z" joint="jRightFifthDIP_z" gear="500"/>
+    <motor name="jRightFourthMCP_x" joint="jRightFourthMCP_x" gear="500"/>
+    <motor name="jRightFourthMCP_y" joint="jRightFourthMCP_y" gear="500"/>
+    <motor name="jRightFourthMCP_z" joint="jRightFourthMCP_z" gear="500"/>
+    <motor name="jRightFourthPIP_x" joint="jRightFourthPIP_x" gear="500"/>
+    <motor name="jRightFourthPIP_y" joint="jRightFourthPIP_y" gear="500"/>
+    <motor name="jRightFourthPIP_z" joint="jRightFourthPIP_z" gear="500"/>
+    <motor name="jRightFourthDIP_x" joint="jRightFourthDIP_x" gear="500"/>
+    <motor name="jRightFourthDIP_y" joint="jRightFourthDIP_y" gear="500"/>
+    <motor name="jRightFourthDIP_z" joint="jRightFourthDIP_z" gear="500"/>
+    <motor name="jRightThirdMCP_x" joint="jRightThirdMCP_x" gear="500"/>
+    <motor name="jRightThirdMCP_y" joint="jRightThirdMCP_y" gear="500"/>
+    <motor name="jRightThirdMCP_z" joint="jRightThirdMCP_z" gear="500"/>
+    <motor name="jRightThirdPIP_x" joint="jRightThirdPIP_x" gear="500"/>
+    <motor name="jRightThirdPIP_y" joint="jRightThirdPIP_y" gear="500"/>
+    <motor name="jRightThirdPIP_z" joint="jRightThirdPIP_z" gear="500"/>
+    <motor name="jRightThirdDIP_x" joint="jRightThirdDIP_x" gear="500"/>
+    <motor name="jRightThirdDIP_y" joint="jRightThirdDIP_y" gear="500"/>
+    <motor name="jRightThirdDIP_z" joint="jRightThirdDIP_z" gear="500"/>
+    <motor name="jRightSecondMCP_x" joint="jRightSecondMCP_x" gear="500"/>
+    <motor name="jRightSecondMCP_y" joint="jRightSecondMCP_y" gear="500"/>
+    <motor name="jRightSecondMCP_z" joint="jRightSecondMCP_z" gear="500"/>
+    <motor name="jRightSecondPIP_x" joint="jRightSecondPIP_x" gear="500"/>
+    <motor name="jRightSecondPIP_y" joint="jRightSecondPIP_y" gear="500"/>
+    <motor name="jRightSecondPIP_z" joint="jRightSecondPIP_z" gear="500"/>
+    <motor name="jRightSecondDIP_x" joint="jRightSecondDIP_x" gear="500"/>
+    <motor name="jRightSecondDIP_y" joint="jRightSecondDIP_y" gear="500"/>
+    <motor name="jRightSecondDIP_z" joint="jRightSecondDIP_z" gear="500"/>
+    <motor name="jRightFirstMCP_x" joint="jRightFirstMCP_x" gear="500"/>
+    <motor name="jRightFirstMCP_y" joint="jRightFirstMCP_y" gear="500"/>
+    <motor name="jRightFirstMCP_z" joint="jRightFirstMCP_z" gear="500"/>
+    <motor name="jRightIP_x" joint="jRightIP_x" gear="500"/>
+    <motor name="jRightIP_y" joint="jRightIP_y" gear="500"/>
+    <motor name="jRightIP_z" joint="jRightIP_z" gear="500"/>
+  </actuator>
+</mujoco>

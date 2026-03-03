@@ -1,0 +1,13 @@
+python skillmimic/run.py \
+  --test \
+  --task SkillMimic2BallPlay \
+  --num_envs 2 \
+  --cfg_env skillmimic/data/cfg/skillmimic_test.yaml \
+  --cfg_train skillmimic/data/cfg/train/rlg/skillmimic.yaml \
+  --history_embedding_size 3 \
+  --hist_length 60 \
+  --hist_ckpt hist_encoder/BallPlay/hist_model.ckpt \
+  --motion_file skillmimic/data/motions/BallPlay \
+  --state_init 2 \
+  --episode_length 600 \
+  --checkpoint models/BallPlay/SkillMimic-V2/model.pth

@@ -1,0 +1,16 @@
+python skillmimic/run.py \
+--task SkillMimic2BallPlay \
+--episode_length 60 \
+--cfg_env skillmimic/data/cfg/skillmimic.yaml \
+--cfg_train skillmimic/data/cfg/train/rlg/skillmimic.yaml \
+--motion_file skillmimic/data/motions/Locomotion \
+--reweight --reweight_alpha 1.0 \
+--state_init_random_prob 0.1 \
+--state_switch_prob 0.1 \
+--state_search_to_align_reward \
+--graph_file skillmimic/data/preprocess/locomotion.pkl \
+--enable_buffernode \
+--hist_length 60 \
+--history_embedding_size 3 \
+--hist_ckpt hist_encoder/Locomotion/hist_model.ckpt \
+--headless \

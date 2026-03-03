@@ -1,0 +1,23 @@
+python skillmimic/run.py \
+--task SkillMimicParahome \
+--episode_length 60 \
+--cfg_env skillmimic/data/cfg/parahome_sm/parahome.yaml \
+--cfg_train skillmimic/data/cfg/train/rlg/parahome.yaml \
+--motion_file skillmimic/data/motions/ParaHome/wristmimic/s110_move_kettle \
+--asset_file_name mjcf/parahome/s110.xml \
+--in_scene_obj_static desk,diningtable \
+--in_scene_obj_dynamic kettle \
+--reweight \
+--reweight_alpha 1.0 \
+--state_init_random_prob 0.1 \
+--state_switch_prob 0 \
+--num_envs 2048 \
+--minibatch_size 16384 \
+--hist_length 60 \
+--history_embedding_size 3 \
+--hist_ckpt hist_encoder/ParaHome/checkpoints/hist_model.ckpt \
+--wandb_project skillmimic_v2_parahome \
+--wandb_name skillmimic_s110_move_kettle \
+--tracking_error_threshold 2.0 \
+--object_tracking_error_threshold 2.0 \
+--headless
