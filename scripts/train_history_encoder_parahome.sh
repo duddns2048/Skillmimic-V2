@@ -1,6 +1,6 @@
 export PYTHONPATH=/home/wongyun/sim/SkillMimic-V2:$PYTHONPATH
 python skillmimic/utils/state_prediction_parahome.py \
---motion_dir skillmimic/data/motions/ParaHome/ \
+--motion_dir skillmimic/data/motions/ParaHome/wristmimic/ \
 --batch_size 256 \
 --history_length 60 \
 --embedding_dim 3 \

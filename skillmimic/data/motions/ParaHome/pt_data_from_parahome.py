@@ -42,7 +42,7 @@ data_pair = [
     {'scene_number': 149, 'scene_name': 'move_book', 'start_frame': 3810, 'end_frame': 3930},
     {'scene_number': 184, 'scene_name': 'move_cup', 'start_frame': 240, 'end_frame': 420},]
 
-idx = 20
+idx = 3
 scene_number = data_pair[idx]['scene_number']
 motion_name = data_pair[idx]['scene_name']
 start_frame = data_pair[idx]['start_frame']

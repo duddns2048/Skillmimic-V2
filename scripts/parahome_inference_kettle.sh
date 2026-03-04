@@ -4,7 +4,7 @@
 # Example: bash scripts/parahome_inference.sh runs/SkillMimicParahome_00-00-00/nn/SkillMimicParahome.pth
 
 # Default checkpoint path (change this to your trained checkpoint)
-CHECKPOINT=${1:-"output/output_1120_0623/SkillMimic_17-04-50-41_kettle/nn/SkillMimic_e14696_r13.0225.pth"}
+CHECKPOINT=${1:-"output/SkillMimic_04-08-42-42/nn/SkillMimic.pth"}
 
 python skillmimic/run.py \
 --task SkillMimicParahome \
